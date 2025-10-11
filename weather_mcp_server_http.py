@@ -11,7 +11,7 @@ OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_KEY")
 OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/"
 
 @mcp.tool()
-async def buscar_temperatura_atual(city: str) -> dict:
+async def get_current_temperature(city: str) -> dict:
     params = {
         "q": city,
         "appid": OPENWEATHER_API_KEY,
@@ -23,7 +23,7 @@ async def buscar_temperatura_atual(city: str) -> dict:
     return response.json()
 
 @mcp.tool()
-async def buscar_previsao_tempo(city: str) -> dict:
+async def get_weather_forecast(city: str) -> dict:
     params = {
         "q": city,
         "appid": OPENWEATHER_API_KEY,
@@ -35,6 +35,6 @@ async def buscar_previsao_tempo(city: str) -> dict:
     return response.json()
 
 if __name__ == "__main__":
-    # Porta dinâmica para Railway ou 8000 localmente
+    # Dynamic port for Railway or 8000 locally
     port = int(os.getenv("PORT", 8000))
     mcp.run(transport="http", port=port, host="0.0.0.0")

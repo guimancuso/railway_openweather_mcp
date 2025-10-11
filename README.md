@@ -4,8 +4,8 @@ A Model Context Protocol (MCP) server that provides weather query tools using th
 
 ## Features
 
-- `buscar_temperatura_atual`: Get current temperature for a city
-- `buscar_previsao_tempo`: Get weather forecast for a city
+- `get_current_temperature`: Get current temperature for a city
+- `get_weather_forecast`: Get weather forecast for a city
 
 ## Technologies
 
