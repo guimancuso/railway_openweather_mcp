@@ -30,12 +30,6 @@ In the Railway dashboard, configure the following variables:
 **Required:**
 - `OPENWEATHER_KEY`: Your OpenWeather API key
 
-**Optional (if using LLM integrations):**
-- `ANTHROPIC_API_KEY`: Anthropic API key
-- `AWS_DEFAULT_REGION`: AWS region (e.g., us-east-1)
-- `AWS_ACCESS_KEY_ID`: AWS Access Key ID
-- `AWS_SECRET_ACCESS_KEY`: AWS Secret Access Key
-
 ### Step 3: Deploy
 
 1. Connect your GitHub repository to Railway
