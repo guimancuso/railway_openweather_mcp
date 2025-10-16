@@ -49,12 +49,14 @@ Configure your MCP client (such as Claude Desktop) to connect to the server:
 {
   "mcpServers": {
     "openweather": {
-      "url": "https://your-app.railway.app",
+      "url": "https://your-app.railway.app/mcp",
       "transport": "http"
     }
   }
 }
 ```
+
+**Important:** MCP HTTP clients must send the header `Accept: application/json, text/event-stream` when connecting to the server.
 
 ## OpenWeather API
 
@@ -62,6 +64,31 @@ To get a free API key:
 1. Visit [OpenWeather](https://openweathermap.org/api)
 2. Create an account
 3. Generate an API key
+
+## Troubleshooting
+
+### Error 400 - Bad Request
+
+If you encounter a 400 error, it's likely due to one of these issues:
+
+1. **Missing Accept Header**: The MCP client must send `Accept: application/json, text/event-stream`
+2. **Missing OPENWEATHER_KEY**: Make sure you configured the environment variable in Railway
+3. **Invalid API Key**: Verify your OpenWeather API key is active and valid
+
+### Testing the Server
+
+You can test your deployed server with curl:
+
+```bash
+# Test initialization (replace with your Railway URL)
+curl -X POST \
+  -H "Accept: application/json, text/event-stream" \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"initialize","id":1,"params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test-client","version":"1.0"}}}' \
+  https://your-app.railway.app/mcp
+```
+
+If the server is working correctly, you should see a JSON response with server info.
 
 ## Project Structure
 
@@ -72,6 +99,7 @@ railway_openweather_mcp/
 ├── uv.lock                      # UV lock file
 ├── Dockerfile                   # Docker configuration
 ├── railway.toml                 # Railway configuration
+├── .env.example                 # Example environment variables
 ├── .gitignore                   # Git ignored files
 ├── LICENSE                      # MIT License
 └── README.md                    # This file
