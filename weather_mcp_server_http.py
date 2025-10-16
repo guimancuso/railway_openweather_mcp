@@ -8,8 +8,6 @@ mcp = FastMCP("OpenWeatherMCP")
 load_dotenv()
 
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_KEY")
-if not OPENWEATHER_API_KEY:
-    raise ValueError("OPENWEATHER_KEY environment variable is required")
 
 OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/"
 
